@@ -24,6 +24,10 @@ jobs:
         run: |
           cd frontend && npm install
 
+      - name: Install Playwright Browsers
+        run: |
+          cd frontend && npx playwright install --with-deps
+
       - name: Run Frontend Tests
         run: |
           cd frontend && npx playwright test tests/homepage.spec.ts
