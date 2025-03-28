@@ -18,7 +18,7 @@ const SongList: React.FC<SongListProps> = ({ songs, favorites, onToggleFavorite 
   return (
     <div>
       <h2>🎵 Music Library</h2>
-      <ul>
+      <ul id="song-list">
         {songs.map((song) => (
           <li key={song.id} style={{ marginBottom: "10px", listStyle: "none" }}>
             <strong>{song.title}</strong> <br />
