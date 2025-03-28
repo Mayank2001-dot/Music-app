@@ -20,14 +20,37 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: Install Dependencies (Frontend & Backend)
         run: |
           cd frontend && npm install
+          cd ../backend && npm install
 
       - name: Install Playwright Browsers
         run: |
           cd frontend && npx playwright install --with-deps
 
-      - name: Run Frontend Tests
+      - name: Start Backend Server
+        run: |
+          cd backend && npm run start &
+        env:
+          NODE_ENV: test
+
+      - name: Wait for Backend to be Ready
+        run: |
+          sleep 10
+          curl --retry 10 --retry-delay 5 --retry-connrefused -v http://localhost:5000 || exit 1
+
+      - name: Start Frontend Server
+        run: |
+          cd frontend && npm run dev &
+        env:
+          NODE_ENV: test
+
+      - name: Wait for Frontend to be Ready
+        run: |
+          sleep 10
+          curl --retry 10 --retry-delay 5 --retry-connrefused -v http://localhost:3000 || exit 1
+
+      - name: Run Playwright Tests
         run: |
           cd frontend && npx playwright test tests/homepage.spec.ts
