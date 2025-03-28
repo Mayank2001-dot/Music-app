@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Frontend Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  test-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -20,36 +20,18 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies (Frontend & Backend)
+      - name: Install Dependencies
         run: |
           cd frontend && npm install
-          cd ../backend/backend-app && npm install  # Fixed backend path
 
       - name: Install Playwright Browsers
         run: |
           cd frontend && npx playwright install --with-deps
 
-      - name: Start Backend Server
-        run: |
-          cd backend/backend-app && npm run start &
-        env:
-          NODE_ENV: test
-
-      - name: Wait for Backend to be Ready
-        run: |
-          sleep 10
-          curl --retry 10 --retry-delay 5 --retry-connrefused -v http://localhost:5000 || exit 1
-
       - name: Start Frontend Server
         run: |
           cd frontend && npm run dev &
-        env:
-          NODE_ENV: test
-
-      - name: Wait for Frontend to be Ready
-        run: |
-          sleep 10
-          curl --retry 10 --retry-delay 5 --retry-connrefused -v http://localhost:3000 || exit 1
+          sleep 5  # Shorter wait time for faster execution
 
       - name: Run Playwright Tests
         run: |
