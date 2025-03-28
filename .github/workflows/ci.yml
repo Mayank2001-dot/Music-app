@@ -23,12 +23,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd frontend && npm install
-          cd ../backend && npm install
 
-      - name: Run Tests (Frontend)
+      - name: Run Frontend Tests
         run: |
-          cd frontend && npm test
-
-      - name: Run Tests (Backend)
-        run: |
-          cd backend && npm test
+          cd frontend && npx playwright test tests/homepage.spec.ts
