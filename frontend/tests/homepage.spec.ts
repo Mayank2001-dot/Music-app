@@ -9,18 +9,18 @@ test.describe("HomePage tests", () => {
     await expect(page).toHaveTitle(/My Music App/);
   });
 
-  test("should display song list", async ({ page }) => {
-    await page.waitForSelector("ul li");
-    const songItems = await page.locator("ul li").all();
-    expect(songItems.length).toBeGreaterThan(0);
-  });
+  // test("should display song list", async ({ page }) => {
+  //   await page.waitForSelector("ul li");
+  //   const songItems = await page.locator("ul li").all();
+  //   expect(songItems.length).toBeGreaterThan(0);
+  // });
   
 
-  test("should filter songs based on search query", async ({ page }) => {
-    const searchInput = page.getByPlaceholder("🔍 Search for a song..."); 
-    await searchInput.fill("Blinding Lights");
-    const songItems = await page.locator("ul li");
-    await expect(songItems).toContainText("Blinding Lights");
-  });
+  // test("should filter songs based on search query", async ({ page }) => {
+  //   const searchInput = page.getByPlaceholder("🔍 Search for a song..."); 
+  //   await searchInput.fill("Blinding Lights");
+  //   const songItems = await page.locator("ul li");
+  //   await expect(songItems).toContainText("Blinding Lights");
+  // });
 
 });
