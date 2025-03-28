@@ -1,0 +1,81 @@
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #fafafa;
+  color: #fafafa;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  border-radius: 10px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h2::before {
+  content: "🎵"; /* Music Note Icon */
+  font-size: 24px;
+}
+
+.favorite-title::before {
+  content: "❤️"; /* Heart Icon for Favorites */
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
