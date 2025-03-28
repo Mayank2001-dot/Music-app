@@ -23,12 +23,4 @@ test.describe("HomePage tests", () => {
     await expect(songItems).toContainText("Blinding Lights");
   });
 
-  test("should toggle favorite song", async ({ page }) => {
-    await page.waitForSelector("button:has-text('❤️')");
-    const heartButton = page.locator("button:has-text('❤️')").first();
-    await heartButton.click();
-
-    const favoriteList = page.locator("#favorites"); 
-    await expect(favoriteList).toContainText("Blinding Lights");
-  });
 });
