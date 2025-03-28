@@ -23,7 +23,7 @@ jobs:
       - name: Install Dependencies (Frontend & Backend)
         run: |
           cd frontend && npm install
-          cd ../backend && npm install
+          cd ../backend/backend-app && npm install  # Fixed backend path
 
       - name: Install Playwright Browsers
         run: |
@@ -31,7 +31,7 @@ jobs:
 
       - name: Start Backend Server
         run: |
-          cd backend && npm run start &
+          cd backend/backend-app && npm run start &
         env:
           NODE_ENV: test
 
